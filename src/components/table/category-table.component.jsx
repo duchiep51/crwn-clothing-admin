@@ -5,8 +5,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import axios from 'axios';
 
 
-class MyTable extends React.Component {
-
+class CategoryTable extends React.Component {
     constructor() {
         super();
 
@@ -16,27 +15,27 @@ class MyTable extends React.Component {
         }
 
         const confirm = ({ _id, name }) => {
-          Modal.confirm({
-            title: 'Confirm',
-            icon: <ExclamationCircleOutlined />,
-            content: 'Do you want to delete this product?',
-            okText: 'Confirm',
-            cancelText: 'Cancel',
-            onOk: () => {
-              axios({
-                url: `products/${_id}`,
-                method: 'delete',
-              }).then(res => {
-                alert(`Delete ${name} successfully !!!`);
-
-                this.setState({ data: this.state.data.filter(item => item._id !== _id )})
-              }).catch(error => {
-                alert(`Fail to delete ${name}`);
-              })
-        
-            }
-          });
-        }
+            Modal.confirm({
+              title: 'Confirm',
+              icon: <ExclamationCircleOutlined />,
+              content: 'Do you want to delete this product?',
+              okText: 'Confirm',
+              cancelText: 'Cancel',
+              onOk: () => {
+                axios({
+                  url: `products/${_id}`,
+                  method: 'delete',
+                }).then(res => {
+                  alert(`Delete ${name} successfully !!!`);
+  
+                  this.setState({ data: this.state.data.filter(item => item._id !== _id )})
+                }).catch(error => {
+                  alert(`Fail to delete ${name}`);
+                })
+          
+              }
+            });
+          }
 
         this.columns = [
             {
@@ -44,16 +43,6 @@ class MyTable extends React.Component {
               dataIndex: 'name',
               key: 'name',
               render: text => <a>{text}</a>,
-            },
-            {
-              title: 'Price',
-              dataIndex: 'price',
-              key: 'price',
-            },
-            {
-              title: 'Quantity',
-              dataIndex: 'quantity',
-              key: 'quantity',
             },
             {
               title: 'Action',
@@ -80,16 +69,14 @@ class MyTable extends React.Component {
         ];
     }
 
-   
-
     async componentDidMount() {
         try {
-            const response = await axios.get('products');
+            const response = await axios.get('categories');
 
             this.setState({ data: response.data.map(item => ({
               key: item._id,
               ...item
-            })).filter((item) => item.isAvailable )});
+            }))});
             
         } catch (e) {
             console.log(e);
@@ -102,5 +89,4 @@ class MyTable extends React.Component {
         )
     }
 }
-
-export default MyTable;
+export default CategoryTable;

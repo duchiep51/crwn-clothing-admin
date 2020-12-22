@@ -1,16 +1,16 @@
 import React from 'react';
-import { Button } from 'antd';
 
 import MyLayout from './components/layout/layout.component';
 
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <MyLayout />
-    </div>
-  );
+class App extends React.Component {
+
+  render() {
+    return (
+      <MyLayout/>
+    );
+  }
 }
 
 export default App;
