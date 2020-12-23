@@ -45,8 +45,6 @@ var config = {
 
     const uploadTask = cloudstorage.ref(`photos/${file.name}`).put(file);
 
-    let downloadURL = null;
-
     uploadTask.on(
       "state_changed",
       null,
@@ -59,7 +57,7 @@ var config = {
         .child(file.name)
         .getDownloadURL()
         .then(url => {
-          downloadURL = url;
+          
         })
       }
     );

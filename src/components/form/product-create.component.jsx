@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
-import { Form, Input, InputNumber, Button, Upload, message, Image } from 'antd';
+import { Form, Input, InputNumber, Button, Upload, Image } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
 import { cloudstorage } from '../../firebase/firebase.utils';
@@ -35,8 +35,6 @@ class ProductCreateForm extends React.Component {
 
     const uploadTask = cloudstorage.ref(`photos/${file.name}`).put(file);
 
-    let downloadURL = null;
-
     uploadTask.on(
       "state_changed",
       null,
@@ -49,7 +47,7 @@ class ProductCreateForm extends React.Component {
         .child(file.name)
         .getDownloadURL()
         .then(url => {
-          downloadURL = this.setState({ imageUrl: url});
+          this.setState({ imageUrl: url});
         })
       }
     );
