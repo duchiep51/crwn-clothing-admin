@@ -3,6 +3,7 @@ import { Table, Space, Modal, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import axios from 'axios';
+import { HEROKU_SERVER } from '../../constants/urls';
 
 
 class MyTable extends React.Component {
@@ -24,7 +25,7 @@ class MyTable extends React.Component {
             cancelText: 'Cancel',
             onOk: () => {
               axios({
-                url: `products/${_id}`,
+                url: `${HEROKU_SERVER}/products/${_id}`,
                 method: 'delete',
               }).then(res => {
                 alert(`Delete ${name} successfully !!!`);
@@ -84,7 +85,7 @@ class MyTable extends React.Component {
 
     async componentDidMount() {
         try {
-            const response = await axios.get('products');
+            const response = await axios.get(`${HEROKU_SERVER}/products`);
 
             this.setState({ data: response.data.map(item => ({
               key: item._id,

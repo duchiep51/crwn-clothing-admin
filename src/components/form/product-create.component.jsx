@@ -58,7 +58,7 @@ class ProductCreateForm extends React.Component {
     values.imageUrl = this.state.imageUrl;
 
     axios({
-      url: `products/create`,
+      url: `${HEROKU_SERVER}/products/create`,
       method: 'post',
       data: {
         name: values.name,

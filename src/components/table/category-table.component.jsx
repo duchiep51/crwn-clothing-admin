@@ -3,6 +3,7 @@ import { Table, Space, Modal, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import axios from 'axios';
+import { HEROKU_SERVER } from '../../constants/urls';
 
 
 class CategoryTable extends React.Component {
@@ -71,7 +72,7 @@ class CategoryTable extends React.Component {
 
     async componentDidMount() {
         try {
-            const response = await axios.get('categories');
+            const response = await axios.get(`${HEROKU_SERVER}/categories`);
 
             this.setState({ data: response.data.map(item => ({
               key: item._id,

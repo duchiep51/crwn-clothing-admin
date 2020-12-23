@@ -3,6 +3,7 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
 import { Form, Input, InputNumber, Button, Image } from 'antd';
+import { HEROKU_SERVER } from '../../constants/urls';
 
 const layout = {
     labelCol: {
@@ -19,7 +20,7 @@ const EditForm = ({ data: { _id, name, price, quantity, description, imageUrl}, 
       console.log('values: ', values);
   
       axios({
-          url: `products/${_id}`,
+          url: `${HEROKU_SERVER}/products/${_id}`,
           method: 'patch',
           data: {
               name: values.name,

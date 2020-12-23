@@ -1,0 +1,1 @@
+export const HEROKU_SERVER = 'https://prc391-crwn-clothing-server.herokuapp.com';
